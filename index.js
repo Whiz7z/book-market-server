@@ -36,15 +36,15 @@ const storage = multer.diskStorage({
 const upload = multer({ storage: storage });
 connectToDatabase();
 const app = express();
+app.use(
+  cors({
+    origin: "https://books-market.onrender.com/",
+  })
+);
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(express.json());
 app.use(express.static("public"));
-app.use(
-  cors({
-    origin: process.env.FRONTEND_URL,
-  })
-);
 
 const port = process.env.PORT || 5000;
 

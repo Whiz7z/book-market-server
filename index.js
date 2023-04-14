@@ -43,7 +43,6 @@ app.use(express.static("public"));
 app.use(
   cors({
     origin: process.env.FRONTEND_URL,
-    credentials: true,
   })
 );
 
@@ -90,5 +89,5 @@ app.post("/api/uploadimage", upload.single("image"), async (req, res) => {
 });
 
 app.listen(port, () => {
-  console.log(`Server runs on poooooort ${port}.`);
+  console.log(`Server runs on poooooort ${port}. ${process.env.FRONTEND_URL}`);
 });

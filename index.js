@@ -38,6 +38,7 @@ const upload = multer({ storage: storage });
 connectToDatabase();
 const app = express();
 app.use(helmet());
+app.use(cors());
 app.use(function (req, res, next) {
   // res.header("Access-Control-Allow-Origin", "*");
   const allowedOrigins = ["https://books-market.onrender.com"];

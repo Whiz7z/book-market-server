@@ -27,23 +27,22 @@ const storage = multer.diskStorage({
   },
 });
 
-var corsOptions = {
-  origin: process.env.FRONTEND_URL,
-  optionsSuccessStatus: 200, // some legacy browsers (IE11, various SmartTVs) choke on 204
-  credentials: true,
-};
+// var corsOptions = {
+//   origin: process.env.FRONTEND_URL,
+//   optionsSuccessStatus: 200, // some legacy browsers (IE11, various SmartTVs) choke on 204
+//   credentials: true,
+// };
 
 const upload = multer({ storage: storage });
 connectToDatabase();
 const app = express();
-app.use(cors(corsOptions));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(express.json());
 app.use(express.static("public"));
 app.use(
   cors({
-    origin: process.env.CLIENT_URL,
+    origin: process.env.FRONTEND_URL,
     credentials: true,
   })
 );

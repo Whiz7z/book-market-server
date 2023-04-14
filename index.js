@@ -38,7 +38,7 @@ connectToDatabase();
 const app = express();
 app.use(
   cors({
-    origin: "https://books-market.onrender.com/",
+    origin: "https://books-market.onrender.com",
   })
 );
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -47,8 +47,6 @@ app.use(express.json());
 app.use(express.static("public"));
 
 const port = process.env.PORT || 5000;
-
-app.use(express.json());
 
 app.use("/api/products", productRoutes);
 app.use("/api/users", userRoutes);

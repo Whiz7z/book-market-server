@@ -5,6 +5,7 @@ import express from "express";
 import path from "path";
 import cors from "cors";
 import multer from "multer";
+import helmet from "helmet";
 //Our Routes
 import productRoutes from "./routes/productRoutes.js";
 import userRoutes from "./routes/userRoutes.js";
@@ -36,6 +37,7 @@ const storage = multer.diskStorage({
 const upload = multer({ storage: storage });
 connectToDatabase();
 const app = express();
+app.use(helmet());
 app.use(
   cors({
     origin: "https://books-market.onrender.com",

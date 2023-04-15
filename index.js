@@ -73,11 +73,13 @@ app.use("/api/payment", paymentRoutes);
 app.use("/api/tags", tagRoutes);
 app.use("/api/messages", messageRoutes);
 
-app.use("/images", express.static("productImages"));
+app.use("/images", async (req, res, next) => {
+  res.set("Cross-Origin-Resource-Policy", "cross-origin");
+  next();
+});
+app.use("/images", express.static("productImages"), async (req, res) => {});
 
 app.post("/api/uploadimage", upload.single("image"), async (req, res) => {
-  res.header("Cross-Origin-Resource-Policy", "cross-origin");
-  res.header("Access-Control-Allow-Origin", "*");
   try {
     console.log("req file", req.file);
     fs.rename(

@@ -76,7 +76,7 @@ app.use("/api/messages", messageRoutes);
 app.use("/images", express.static("productImages"));
 
 app.post("/api/uploadimage", upload.single("image"), async (req, res) => {
-  res.setHeader("Cross-Origin-Resource-Policy", "same-site");
+  res.header("Cross-Origin-Resource-Policy", "cross-origin");
   res.header("Access-Control-Allow-Origin", "*");
   try {
     console.log("req file", req.file);

@@ -78,11 +78,7 @@ app.use("/images", async (req, res, next) => {
   res.set("Cross-Origin-Resource-Policy", "cross-origin");
   next();
 });
-app.use(
-  "/images",
-  express.static(process.env.IMAGE_PATH),
-  async (req, res) => {}
-);
+app.use("/images", express.static("/var/lib/data"), async (req, res) => {});
 
 app.post("/api/uploadimage", upload.single("image"), async (req, res) => {
   try {

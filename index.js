@@ -78,7 +78,11 @@ app.use("/images", async (req, res, next) => {
   res.set("Cross-Origin-Resource-Policy", "cross-origin");
   next();
 });
-app.use("/images", express.static("public"), async (req, res) => {});
+app.use(
+  "/images",
+  express.static("../../../../var/data/images"),
+  async (req, res) => {}
+);
 
 app.post("/api/uploadimage", upload.single("image"), async (req, res) => {
   try {

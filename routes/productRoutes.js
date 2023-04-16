@@ -126,7 +126,7 @@ const updateProduct = asyncHandler(async (req, res) => {
     try {
       if (isPhotoChanged) {
         fs.unlink(
-          "../../../../var/data/images/productImages" +
+          "../../../../var/data/images/productImages/" +
             updatedProduct.imagePath,
           (err) => {
             console.log("Delete File successfully.");
@@ -245,7 +245,8 @@ const deleteProduct = asyncHandler(async (req, res) => {
       console.log("deleted", deleted);
 
       fs.unlink(
-        "../../../../var/data/images/productImages" + productToDelete.imagePath,
+        "../../../../var/data/images/productImages/" +
+          productToDelete.imagePath,
         (err) => {
           if (err) {
             console.log(err);

@@ -22,7 +22,7 @@ import Product from "./models/Product.js";
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
     console.log(path.relative(__dirname, "/var/lib/data"));
-    cb(null, path.resolve(path.resolve(), "../../../../var/lib/data"));
+    cb(null, path.resolve(path.resolve(), "../../../../var/data/images"));
   },
   filename: (req, file, cb) => {
     cb(null, Date.now() + path.extname(file.originalname));

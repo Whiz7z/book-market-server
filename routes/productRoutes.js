@@ -54,8 +54,6 @@ const getProductOfTheWeek = asyncHandler(async (req, res) => {
   }
 });
 
-getProductOfTheWeek;
-
 const getProductByTags = asyncHandler(async (req, res) => {
   if (req.query.tags && req.query.tags.trim("").length > 0) {
     const tags = req.query.tags.split(",");

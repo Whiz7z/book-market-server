@@ -3,3 +3,7 @@
 nodemon.json
 
 node_modules
+
+/uploadedImages
+
+/productImages

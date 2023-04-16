@@ -22,7 +22,7 @@ import Product from "./models/Product.js";
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
     console.log(path.relative(__dirname, "/var/lib/data"));
-    cb(null, "/var/lib/data");
+    cb(null, path.resolve(path.resolve(), "../../../../var/lib/data"));
   },
   filename: (req, file, cb) => {
     cb(null, Date.now() + path.extname(file.originalname));
@@ -78,7 +78,7 @@ app.use("/images", async (req, res, next) => {
   res.set("Cross-Origin-Resource-Policy", "cross-origin");
   next();
 });
-app.use("/images", express.static("/var/lib/data"), async (req, res) => {});
+app.use("/images", express.static("public"), async (req, res) => {});
 
 app.post("/api/uploadimage", upload.single("image"), async (req, res) => {
   try {

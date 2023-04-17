@@ -22,10 +22,7 @@ import Product from "./models/Product.js";
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
     console.log(path.resolve());
-    cb(
-      null,
-      path.resolve(path.resolve(), "../../../../var/data/images/productImages")
-    );
+    cb(null, path.resolve(path.resolve(), `${process.env.IMAGES_PATH}`));
   },
   filename: (req, file, cb) => {
     cb(null, Date.now() + path.extname(file.originalname));
@@ -83,7 +80,7 @@ app.use("/images", async (req, res, next) => {
 });
 app.use(
   "/images",
-  express.static("../../../../var/data/images/productImages"),
+  express.static(`${process.env.IMAGES_PATH}`),
   async (req, res) => {}
 );
 

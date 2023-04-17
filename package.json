@@ -5,6 +5,7 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
+    "startDev": "nodemon index.js",
     "start": "node server/index.js",
     "startNodemon": "nodemon server/index",
     "client": "npm run start --prefix client",

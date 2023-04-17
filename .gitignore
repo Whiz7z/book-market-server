@@ -4,6 +4,6 @@ nodemon.json
 
 node_modules
 
-/uploadedImages
+uploadedImages
 
-/productImages
+productImages

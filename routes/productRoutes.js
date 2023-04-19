@@ -135,6 +135,16 @@ const updateProduct = asyncHandler(async (req, res) => {
       }
     } catch (err) {}
 
+    const allTags = await Tag.find({});
+
+    console.log(allTags);
+
+    allTags[0].allTags.push(...tags);
+
+    const updatedTags = await allTags[0].save();
+
+    console.log("updated tags", updatedTags);
+
     res.json(updatedProduct);
   } else {
     res.status(404);

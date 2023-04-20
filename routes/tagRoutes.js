@@ -53,6 +53,6 @@ const deleteChoosenTags = asyncHandler(async (req, res) => {
 });
 
 tagRoutes.route("/").get(getAllTags);
-tagRoutes.route("/delete").put(deleteChoosenTags);
+tagRoutes.route("/delete").put(protectRoute, admin, deleteChoosenTags);
 
 export default tagRoutes;

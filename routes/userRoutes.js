@@ -31,6 +31,39 @@ const loginUser = asyncHandler(async (req, res) => {
   }
 });
 
+const demoLogin = asyncHandler(async (req, res) => {
+  const { role } = req.body;
+  console.log("role", role);
+  if (role === "admin") {
+    const admin = await User.findOne({ isAdmin: true });
+    console.log(admin);
+    res.json({
+      _id: admin._id,
+      name: admin.name,
+      surname: admin.surname,
+      email: admin.email,
+      isAdmin: admin.isAdmin,
+      token: genToken(admin._id),
+      createdAt: admin.createdAt,
+    });
+  } else if (role === "user") {
+    const demoUser = await User.findOne({ email: "demo@demo.com" });
+    console.log(demoUser);
+    res.json({
+      _id: demoUser._id,
+      name: demoUser.name,
+      surname: demoUser.surname,
+      email: demoUser.email,
+      isAdmin: demoUser.isAdmin,
+      token: genToken(demoUser._id),
+      createdAt: demoUser.createdAt,
+    });
+  } else {
+    res.status(401).send("Invalid Email or Password");
+    throw new Error("User not found.");
+  }
+});
+
 const registerUser = asyncHandler(async (req, res) => {
   const { name, email, password } = req.body;
 
@@ -136,6 +169,7 @@ const sendMessage = asyncHandler(async (req, res) => {
 });
 
 userRoutes.route("/login").post(loginUser);
+userRoutes.route("/demoLogin").post(demoLogin);
 userRoutes.route("/register").post(registerUser);
 userRoutes.route("/admin").get(protectRoute, admin, getAdmin);
 userRoutes.route("/changeinfo").put(protectRoute, changeInfo);
